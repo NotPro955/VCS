@@ -1,12 +1,17 @@
 #include <iostream>
+#include "vcs_cmd.cpp"
 using namespace std;
+
+
 
 int main(int argc, char *argv[]){
 	if(argc != 1){
+		vcs_cmd vcm_obj;
 		string arg = string(argv[1]);
 
 		if(arg == "init"){
 			cout << "inti cmd" << endl;
+			vcm_obj.init();
 		}
 		else if(arg == "add"){
 			cout << "add cmd" << endl;
