@@ -6,15 +6,16 @@ using namespace std;
 
 int main(int argc, char *argv[]){
 	if(argc != 1){
-		vcs_cmd vcm_obj;
+		vcs_cmd vcs_obj;
 		string arg = string(argv[1]);
 
 		if(arg == "init"){
 			cout << "inti cmd" << endl;
-			vcm_obj.init();
+			vcs_obj.init();
 		}
 		else if(arg == "add"){
 			cout << "add cmd" << endl;
+			vcs_obj.add(string(argv[2]));
 		}
 		else if(arg == "commit"){
 			cout << "commit cmd" << endl;
