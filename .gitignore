@@ -1,3 +1,2 @@
-*.out
-.vcs
-.vcsignore
+a.out
+.vcs/
