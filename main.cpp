@@ -1,5 +1,5 @@
 #include <iostream>
-#include "cmd_args.cpp"
+#include "cmds/init.cpp"
 using namespace std;
 
 int main(int argc,char *argv[]){

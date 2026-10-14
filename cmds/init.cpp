@@ -15,6 +15,14 @@ public:
 		: worktree(path), gitdir(worktree / ".vcs") {}
 };
 
+filesystem::path repo_find(filesystem::path path){
+	if(filesystem::exists(".vcs")){
+		return path;
+	}
+
+	return repo_find(path.parent_path());
+}
+
 void repo_create(const filesystem::path& path) {
 	VcsRepo repo(path);
 
@@ -22,6 +30,8 @@ void repo_create(const filesystem::path& path) {
 		cerr << repo.worktree << " is not an existing directory!" << endl;
 		return;
 	}
+	repo.gitdir = repo_find(repo.gitdir);
+	cout << "gitdir location: "<< repo.gitdir << endl;
 
 	if (filesystem::exists(repo.gitdir)) {
 		if (!filesystem::is_directory(repo.gitdir)) {
@@ -32,8 +42,6 @@ void repo_create(const filesystem::path& path) {
 			cerr << repo.gitdir << " is not empty!" << endl;
 			return;
 		}
-	} else {
-		filesystem::create_directory(repo.gitdir);
 	}
 
 	filesystem::create_directories(repo.gitdir / "branches");
